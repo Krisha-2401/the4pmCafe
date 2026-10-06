@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 4 PM Café</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <header>
+        <div class="brand">
+            <span>THE</span>
+            4 PM
+            <small>CAFÉ</small>
+        </div>
+
+        <nav>
+            <a href="#menu">Menu</a>
+            <a href="#build">Build</a>
+            <a href="#journal">Journal</a>
+            <a href="#corner">Your Corner</a>
+        </nav>
+
+        <button class="order-btn" onclick="showOrder()">
+            Order <span id="orderCount">0</span>
+        </button>
+    </header>
+
+
+    <!-- INTRO -->
+    <main>
+
+        <section class="intro">
+
+            <div class="intro-left">
+                <p class="date">OPEN EVERY DAY · 11 AM — 10 PM</p>
+
+                <h1>
+                    It's<br>
+                    <i>4 PM</i><br>
+                    somewhere.
+                </h1>
+
+                <p class="description">
+                    Coffee for the tired. Cake for the emotional.
+                    A table for anyone who needs five quiet minutes.
+                </p>
+
+                <a href="#menu" class="menu-link">
+                    SEE TODAY'S MENU ↓
+                </a>
+            </div>
+
+            <div class="intro-right">
+
+                <div class="coffee-drawing">
+                    <div class="cup">
+                        <div class="coffee"></div>
+                        <div class="handle"></div>
+                    </div>
+
+                    <div class="steam one"></div>
+                    <div class="steam two"></div>
+                </div>
+
+                <p class="hand-note">
+                    made slowly,<br>
+                    served warmly.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- TODAY'S NOTE -->
+        <section class="daily-note">
+
+            <div class="note-label">
+                TODAY'S NOTE
+            </div>
+
+            <div class="note-text">
+                "The best conversations usually
+                start with <u>Can I get another coffee?</u>"
+            </div>
+
+            <div class="note-sign">
+                — table seven
+            </div>
+
+        </section>
+
+
+        <!-- MENU -->
+        <section id="menu" class="menu-section">
+
+            <div class="section-title">
+                <span>01</span>
+                <h2>Today's Menu</h2>
+            </div>
+
+            <div class="menu-tabs">
+                <button onclick="showMenu('coffee')">Coffee</button>
+                <button onclick="showMenu('other')">Non-Coffee</button>
+                <button onclick="showMenu('bites')">Bites</button>
+                <button onclick="showMenu('sweet')">Sweet</button>
+            </div>
+
+            <div id="menuList" class="menu-list"></div>
+
+        </section>
+
+
+        <!-- BUILD YOUR DRINK -->
+        <section id="build" class="build-section">
+
+            <div class="build-heading">
+                <span>02</span>
+                <h2>Make your<br><i>4 PM.</i></h2>
+                <p>
+                    You choose the ingredients.
+                    We'll pretend we knew exactly what
+                    you wanted all along.
+                </p>
+            </div>
+
+            <div class="builder">
+
+                <div class="choice">
+                    <label>01 — Start with</label>
+
+                    <button onclick="choose('base','Espresso',90,this)">
+                        Espresso
+                    </button>
+
+                    <button onclick="choose('base','Cold Brew',120,this)">
+                        Cold Brew
+                    </button>
+
+                    <button onclick="choose('base','Matcha',140,this)">
+                        Matcha
+                    </button>
+                </div>
+
+
+                <div class="choice">
+                    <label>02 — Milk</label>
+
+                    <button onclick="choose('milk','Regular Milk',0,this)">
+                        Regular
+                    </button>
+
+                    <button onclick="choose('milk','Oat Milk',30,this)">
+                        Oat
+                    </button>
+
+                    <button onclick="choose('milk','Almond Milk',30,this)">
+                        Almond
+                    </button>
+                </div>
+
+
+                <div class="choice">
+                    <label>03 — Something extra</label>
+
+                    <button onclick="choose('flavor','Vanilla',20,this)">
+                        Vanilla
+                    </button>
+
+                    <button onclick="choose('flavor','Caramel',25,this)">
+                        Caramel
+                    </button>
+
+                    <button onclick="choose('flavor','Hazelnut',25,this)">
+                        Hazelnut
+                    </button>
+                </div>
+
+
+                <div class="drink-result">
+
+                    <p>YOUR CREATION</p>
+
+                    <h3 id="drinkName">
+                        Pick your ingredients.
+                    </h3>
+
+                    <div id="drinkDetails">
+                        —
+                    </div>
+
+                    <strong id="drinkPrice">₹0</strong>
+
+                    <button onclick="addCustomDrink()">
+                        ADD TO ORDER +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PAIRING -->
+        <section class="pairing">
+
+            <div>
+                <span>03 / PERFECT PAIR</span>
+
+                <h2>
+                    Coffee<br>
+                    <i>needs company.</i>
+                </h2>
+            </div>
+
+            <div class="pair-box">
+
+                <label>I'm having...</label>
+
+                <select id="drinkChoice" onchange="pairDessert()">
+                    <option value="latte">Latte</option>
+                    <option value="coldbrew">Cold Brew</option>
+                    <option value="matcha">Matcha</option>
+                    <option value="cappuccino">Cappuccino</option>
+                </select>
+
+                <div id="pairResult">
+                    <h3>Cinnamon Roll</h3>
+                    <p>Warm, buttery and slightly sweet.</p>
+                    <strong>₹150</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- JOURNAL -->
+        <section id="journal" class="journal">
+
+            <div class="section-title">
+                <span>04</span>
+                <h2>Café Journal</h2>
+            </div>
+
+            <div class="journal-paper">
+
+                <div class="journal-date" id="journalDate">
+                    04.10.26
+                </div>
+
+                <div class="journal-entry">
+
+                    <h3 id="journalTitle">
+                        The book on table seven.
+                    </h3>
+
+                    <p id="journalText">
+                        Someone left a book on table seven
+                        this afternoon. They never came back
+                        for it. We hope they're okay.
+                    </p>
+
+                    <small>— written behind the counter</small>
+
+                </div>
+
+                <div class="journal-buttons">
+                    <button onclick="previousEntry()">←</button>
+                    <button onclick="nextEntry()">→</button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TABLE -->
+        <section id="corner" class="corner-section">
+
+            <div class="corner-intro">
+
+                <span>05 / FIND YOUR CORNER</span>
+
+                <h2>
+                    Where do you<br>
+                    want to sit?
+                </h2>
+
+                <p>
+                    Window seat for people watching.
+                    Corner table for disappearing.
+                    Bar seat for pretending you're working.
+                </p>
+
+            </div>
+
+
+            <div class="tables">
+
+                <div class="table-row">
+                    <button onclick="selectTable(1,this)">01</button>
+                    <button onclick="selectTable(2,this)">02</button>
+                </div>
+
+                <div class="table-row">
+                    <button class="taken">03</button>
+                    <button onclick="selectTable(4,this)">04</button>
+                    <button onclick="selectTable(5,this)">05</button>
+                </div>
+
+                <div class="bar">
+                    BAR
+                    <button onclick="selectTable(6,this)">06</button>
+                    <button onclick="selectTable(7,this)">07</button>
+                </div>
+
+            </div>
+
+            <div id="tableInfo" class="table-info">
+                Pick a table.
+            </div>
+
+        </section>
+
+
+        <!-- LOYALTY -->
+        <section class="loyalty">
+
+            <div>
+                <p>THE LITTLE CAFÉ CARD</p>
+
+                <h2>
+                    Five coffees.<br>
+                    One on us.
+                </h2>
+            </div>
+
+            <div class="coffee-stamps">
+
+                <span id="stamp1">☕</span>
+                <span id="stamp2">☕</span>
+                <span id="stamp3">☕</span>
+                <span id="stamp4">☕</span>
+                <span id="stamp5">☕</span>
+
+                <button onclick="addStamp()">
+                    + ADD TODAY'S COFFEE
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- 4 PM QUIZ -->
+        <section class="four-pm">
+
+            <p>ONE LAST THING</p>
+
+            <h2>
+                What kind of<br>
+                <i>4 PM</i> is it?
+            </h2>
+
+            <div class="mood-buttons">
+
+                <button onclick="fourPM('coffee')">
+                    ☕ I need coffee.
+                </button>
+
+                <button onclick="fourPM('quiet')">
+                    📖 I need quiet.
+                </button>
+
+                <button onclick="fourPM('friends')">
+                    🧑‍🤝‍🧑 I need people.
+                </button>
+
+                <button onclick="fourPM('rain')">
+                    🌧️ I need a window.
+                </button>
+
+            </div>
+
+            <div id="pmResult"></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ORDER DRAWER -->
+    <div id="orderBox" class="order-box">
+
+        <button class="close" onclick="closeOrder()">×</button>
+
+        <h2>Your Order</h2>
+
+        <div id="orderItems">
+            Nothing here yet.
+        </div>
+
+        <div class="total">
+            Total: ₹<span id="total">0</span>
+        </div>
+
+        <button class="checkout" onclick="checkout()">
+            PLACE ORDER
+        </button>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-brand">
+            THE 4 PM CAFÉ
+        </div>
+
+        <p>
+            Coffee. Cake. Conversations.
+        </p>
+
+        <small>
+            © 2026 The 4 PM Café
+        </small>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
